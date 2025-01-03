@@ -3,7 +3,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-const postData: { [key: string]: any } = {
+type Post = {
+  title: string;
+  content: string;
+  image: string;
+};
+
+const postData: { [key: string]: Post } = {
   1: {
     title: "15 Things I'd Tell About 'Eiffel Tower, Paris'",
     content:
@@ -31,7 +37,7 @@ const postData: { [key: string]: any } = {
   5: {
     title: "10 Things I'd Tell About 'Colosseum, Rome'",
     content:
-     "The Colosseum, an ancient amphitheater in Rome, Italy, is a marvel of ancient engineering and a symbol of the city's rich history. Built in 70-80 AD, this iconic structure hosted gladiatorial contests, animal hunts, and other spectacles for the entertainment of the Roman people. Today, the Colosseum is a popular tourist attraction and a UNESCO World Heritage Site. Visitors can explore the ruins, learn about the history of the amphitheater, and imagine the grandeur of ancient Rome. The Colosseum, also known as the Flavian Amphitheatre, is an iconic symbol of ancient Rome and a must-visit for history buffs, architecture enthusiasts, and travelers. Built in 70-80 AD, this ancient amphitheater hosted gladiatorial contests, animal hunts, and other spectacles for the entertainment of the Roman people. Today, the Colosseum is a popular tourist attraction and a testament to the grandeur of the Roman Empire. The Colosseum, symbolizes the grandeur of the Roman Empire. Once hosting gladiator battles and public spectacles, it now stands as a monument to history and architecture, attracting millions of visitors each year.",
+      "The Colosseum, an ancient amphitheater in Rome, Italy, is a marvel of ancient engineering and a symbol of the city's rich history. Built in 70-80 AD, this iconic structure hosted gladiatorial contests, animal hunts, and other spectacles for the entertainment of the Roman people. Today, the Colosseum is a popular tourist attraction and a UNESCO World Heritage Site. Visitors can explore the ruins, learn about the history of the amphitheater, and imagine the grandeur of ancient Rome. The Colosseum, also known as the Flavian Amphitheatre, is an iconic symbol of ancient Rome and a must-visit for history buffs, architecture enthusiasts, and travelers. Built in 70-80 AD, this ancient amphitheater hosted gladiatorial contests, animal hunts, and other spectacles for the entertainment of the Roman people. Today, the Colosseum is a popular tourist attraction and a testament to the grandeur of the Roman Empire. The Colosseum, symbolizes the grandeur of the Roman Empire. Once hosting gladiator battles and public spectacles, it now stands as a monument to history and architecture, attracting millions of visitors each year.",
     image: '/images/02.jpg',
   },
 };
@@ -77,12 +83,10 @@ export default function BlogPost({ params }: { params: { id: string } }) {
         <h2 className="text-2xl font-semibold mb-4 text-blue-700 text-center">Comments Section</h2>
         <div className="space-y-4 text-center">
           {comments.length === 0 && <p>No comments yet. Be the first to comment!</p>}
-         
         </div>
 
         {/* Comment Form */}
         <div className="mt-6 mx-auto w-full md:w-1/2">
-      
           <input
             type="text"
             value={name}
@@ -97,7 +101,7 @@ export default function BlogPost({ params }: { params: { id: string } }) {
             placeholder="Email"
             className="w-full p-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-            <textarea
+          <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Comment"
@@ -115,13 +119,12 @@ export default function BlogPost({ params }: { params: { id: string } }) {
             <label className="ml-2 text-gray-600 text-sm">
               Save my name, email in this browser for the next time I comment.
             </label>
-
           </div>
 
-          <div >
-          {comments.map((cmt, index) => (
-            <p key={index} className="bg-gray-300 p-3 rounded-md mb-4">{cmt}</p>
-          ))}
+          <div>
+            {comments.map((cmt, index) => (
+              <p key={index} className="bg-gray-300 p-3 rounded-md mb-4">{cmt}</p>
+            ))}
           </div>
 
           <button
