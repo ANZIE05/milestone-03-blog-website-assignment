@@ -53,7 +53,7 @@ export default function BlogPost({ params }: { params: { id: string } }) {
 
   const handleAddComment = () => {
     if (comment.trim() !== '') {
-      setComments([...comments, `${comment} - ${name} (${email})`]);
+      setComments([...comments, `${comment} - ${name} (email-hidden)`]);
       setComment('');
       setName('');
       setEmail('');
@@ -131,7 +131,7 @@ export default function BlogPost({ params }: { params: { id: string } }) {
             onClick={handleAddComment}
             className="py-1 px-4 text-white font-semibold bg-blue-700 hover:bg-blue-600 rounded-lg transition"
           >
-            Post Comment
+            Add Comment
           </button>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import BlogCards from '../Cards/page'
 
 const HeroPage = () => {
   return (
@@ -22,7 +23,8 @@ const HeroPage = () => {
           <Link href="/Cards">Explore Now</Link>
         </button>
       </div>
-    </div>
+    </div><br/>
+    <BlogCards />
 
 
     </div>
